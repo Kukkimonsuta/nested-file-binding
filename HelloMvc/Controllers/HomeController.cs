@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using HelloMvc.Models;
 
 namespace HelloMvc
 {
@@ -6,5 +7,11 @@ namespace HelloMvc
     {
         [HttpGet("/")]
         public IActionResult Index() => View();
+        
+        [HttpPost("/")]
+        public IActionResult Index(HomeIndexModel model)
+        {
+            return View(model);
+        }
     }
 }

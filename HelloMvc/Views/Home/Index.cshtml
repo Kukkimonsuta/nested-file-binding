@@ -1,6 +1,52 @@
+@model HelloMvc.Models.HomeIndexModel
+
 <html>
     <body>
-        <img src="images/ASP-NET-Banners-01.png" />
-        @("Hello World")
+        <form method="post" action="" enctype="multipart/form-data">
+            <h3>Form 1</h3>
+            <p>
+                working, because 'data.text' is always sent (even though it's empty)
+            </p>
+        
+            <input name="data.text" type="text" placeholder="text" />
+            <input name="data.file" type="file" />
+            
+            <button type="submit">Send</button>
+        </form>
+        
+        <hr>
+        
+        <form method="post" action="" enctype="multipart/form-data">
+            <h3>Form 2</h3>
+            <p>
+                not working, 'data.file' is only key in nested model and gets ignored
+            </p>
+        
+            <input name="data.file" type="file" />
+            
+            <button type="submit">Send</button>
+        </form>
+        
+        <hr>
+        
+        <form method="post" action="" enctype="multipart/form-data">
+            <h3>Form 3</h3>
+            <p>
+                working, 'file' is in the root model
+            </p>
+        
+            <input name="file" type="file" />
+            
+            <button type="submit">Send</button>
+        </form>
+        
+        <hr>
+        
+        <p>
+            <h3>Results:</h3>
+            <em>File</em>: @Model?.File?.FileName<br />
+            <em>Data.Text</em>: @Model?.Data?.Text<br />
+            <em>Data.File</em>: @Model?.Data?.File?.FileName<br />
+        </p>
     </body>
 </html>
